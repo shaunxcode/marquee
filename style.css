@@ -1,5 +1,6 @@
 .groupSelectionBox {
     position: absolute;
     border: 1px dashed #0000ff;
+    cursor: crosshair;
 }
 
