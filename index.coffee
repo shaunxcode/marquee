@@ -1,6 +1,5 @@
 $ = require "jquery"
-o = require "./lib/jquery.overlaps.js"
-console.log "OVERLAPS", o
+require "./lib/jquery.overlaps.js"
 Emitter = require "emitter"
 
 module.exports = (surface, selectable, selectedClass) ->
