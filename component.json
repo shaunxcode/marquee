@@ -1,0 +1,16 @@
+{
+  "name": "marquee",
+  "repo": "shaunxcode/marquee",
+  "description": "marquee sleection tool",
+  "version": "0.0.1",
+  "keywords": ["tools", "interaction"],
+  "dependencies": {
+    "component/jquery": "*",
+    "component/emitter": "*"
+  },
+  "styles": ["style.css"],
+  "scripts": [
+    "lib/jquery.overlaps.js",
+    "index.js"
+  ]
+}
