@@ -59,10 +59,11 @@
         if (drawingBox) {
           drawingBox.remove();
           drawingBox = false;
-          selected.removeClass(selectedClass);
         }
         if (selected.length) {
-          return emitter.emit("itemsSelected", selected);
+          selected.removeClass(selectedClass);
+          emitter.emit("itemsSelected", selected);
+          return selected = false;
         }
       }
     });

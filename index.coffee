@@ -48,10 +48,11 @@ module.exports = (surface, selectable, selectedClass) ->
 			if drawingBox
 				drawingBox.remove()
 				drawingBox = false
-				selected.removeClass selectedClass
-				
+
 			if selected.length
+				selected.removeClass selectedClass
 				emitter.emit "itemsSelected", selected
+				selected = false
 
 	emitter
 
