@@ -4,7 +4,8 @@ marquee
 marquee selection component. 
 
 ##Arguments
-```marquee(surface [jquery selector], selectable [selector for selectable items], selectedClass [class to apply to items as they are selected])
+```
+marquee(surface [jquery selector], selectable [selector for selectable items], selectedClass [class to apply to items as they are selected])
 ```
 
 ##Using
