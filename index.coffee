@@ -20,8 +20,8 @@ module.exports = (surface, selectable, selectedClass) ->
 
 			drawingBox
 				.addClass("groupSelectionBox")
-				.css("left", e.pageX)
-				.css("top", e.pageY)
+				.css("left", e.pageX + "px")
+				.css("top", e.pageY + "px")
 
 			document.body.appendChild drawingBox.get(0)
 
@@ -42,15 +42,14 @@ module.exports = (surface, selectable, selectedClass) ->
 					height = e.pageY - top
 					
 				drawingBox
-					.css("left", left)
-					.css("top", top)
-					.css("width", width)
-					.css("height", height)
+					.css("left", left + "px")
+					.css("top", top + "px")
+					.css("width", width + "px")
+					.css("height", height + "px")
 	
-				selected = dom("#{surface} #{selectable}")
+				selected = dom("#{surface} #{selectable}", document)
 					.removeClass(selectedClass)
-					.filter((el) -> 
-						elementsOverlap(drawingBox.get(0), el.get(0)))
+					.filter((el) -> elementsOverlap(drawingBox.get(0), el.get(0)))
 					.addClass(selectedClass)
 					
 		surfaceElement.addEventListener "mouseup", (e) ->

@@ -23,7 +23,7 @@
       startX = e.pageX;
       startY = e.pageY;
       drawingBox = dom("<div />");
-      drawingBox.addClass("groupSelectionBox").css("left", e.pageX).css("top", e.pageY);
+      drawingBox.addClass("groupSelectionBox").css("left", e.pageX + "px").css("top", e.pageY + "px");
       return document.body.appendChild(drawingBox.get(0));
     });
     surfaceElement.addEventListener("mousemove", function(e) {
@@ -43,8 +43,8 @@
           top = startY;
           height = e.pageY - top;
         }
-        drawingBox.css("left", left).css("top", top).css("width", width).css("height", height);
-        return selected = dom("" + surface + " " + selectable).removeClass(selectedClass).filter(function(el) {
+        drawingBox.css("left", left + "px").css("top", top + "px").css("width", width + "px").css("height", height + "px");
+        return selected = dom("" + surface + " " + selectable, document).removeClass(selectedClass).filter(function(el) {
           return elementsOverlap(drawingBox.get(0), el.get(0));
         }).addClass(selectedClass);
       }
