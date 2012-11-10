@@ -14,20 +14,17 @@
 </style>
 <script src="../build/build.js"></script>
 <link rel="stylesheet" href="../build/build.css">
-<script>
-var M = require("marquee");
-var $ = require("component-jquery");
-$(function(){
-	var myMarqueeTool = M("body", "> .widget", "lit")
-		.on("itemsSelected", function(items) {
-			console.log(items);
-		});
-});
 
-</script>
 <body>
 	<div id="item1" class="widget"></div>
 	<div id="item2" class="widget"></div>
 	<div id="item3" class="widget"></div>
 </body>
+<script>
+var M = require("marquee");
+var myMarqueeTool = M("body", "> .widget", "lit")
+	.on("itemsSelected", function(items) {
+		console.log(items);
+	});
 
+</script>

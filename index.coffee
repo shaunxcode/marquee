@@ -1,6 +1,6 @@
-$ = require "jquery"
-require "./lib/jquery.overlaps.js"
 Emitter = require "emitter"
+elementsOverlap = require "elementsOverlap"
+dom = require "dom"
 
 module.exports = (surface, selectable, selectedClass) ->
 	emitter = new Emitter
@@ -9,18 +9,23 @@ module.exports = (surface, selectable, selectedClass) ->
 	startX = 0
 	startY = 0
 	
-	$(surface).on 
-		mousedown: (e) ->
+	surfaceElement = document.querySelector(surface)
+	
+	surfaceElement.addEventListener "mousedown", (e) ->
 			if selected then selected.removeClass selectedClass
 			
 			startX = e.pageX
 			startY = e.pageY
-			drawingBox = $("<div />")
+			drawingBox = dom("<div />")
+
+			drawingBox
 				.addClass("groupSelectionBox")
-				.css(left: e.pageX, top: e.pageY)
-				.appendTo "body"
-				
-		mousemove: (e) ->
+				.css("left", e.pageX)
+				.css("top", e.pageY)
+
+			document.body.appendChild drawingBox.get(0)
+
+		surfaceElement.addEventListener "mousemove", (e) ->
 			if drawingBox			 
 				if e.pageX < startX
 					left = e.pageX
@@ -36,20 +41,24 @@ module.exports = (surface, selectable, selectedClass) ->
 					top = startY
 					height = e.pageY - top
 					
-				drawingBox.css {left, top, width, height}
+				drawingBox
+					.css("left", left)
+					.css("top", top)
+					.css("width", width)
+					.css("height", height)
 	
-	
-				selected = $("#{surface} #{selectable}")
+				selected = dom("#{surface} #{selectable}")
 					.removeClass(selectedClass)
-					.filter(-> drawingBox.overlaps this)
+					.filter((el) -> 
+						elementsOverlap(drawingBox.get(0), el.get(0)))
 					.addClass(selectedClass)
-				
-		mouseup: (e) ->
+					
+		surfaceElement.addEventListener "mouseup", (e) ->
 			if drawingBox
-				drawingBox.remove()
+				document.body.removeChild drawingBox.get(0)
 				drawingBox = false
 
-			if selected.length
+			if selected and selected.length()
 				selected.removeClass selectedClass
 				emitter.emit "itemsSelected", selected
 				selected = false
