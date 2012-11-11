@@ -7,7 +7,7 @@
   "dependencies": {
     "component/emitter": "*",
     "component/dom": "*",
-    "shaunxcode/elementsOverlap": "*"
+    "shaunxcode/elements-overlap": "*"
   },
   "styles": ["style.css"],
   "scripts": [
