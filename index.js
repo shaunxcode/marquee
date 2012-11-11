@@ -4,7 +4,7 @@
 
   Emitter = require("emitter");
 
-  elementsOverlap = require("elementsOverlap");
+  elementsOverlap = require("elements-overlap");
 
   dom = require("dom");
 
